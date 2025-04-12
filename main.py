@@ -1,7 +1,7 @@
 import cv2
-import numpy as np
 
 cap = cv2.VideoCapture(0)
+cap.set(cv2.CAP_PROP_EXPOSURE, -4)
 
 if not cap.isOpened():
     print("Error: Could not open webcam.")
@@ -27,9 +27,9 @@ while True:
     print("Detected markers:", ids)
 
     if ids is not None:
-        cv2.aruco.drawDetectedMarkers(frame, corners, ids)
+        cv2.aruco.drawDetectedMarkers(image=frame, corners=corners, ids=ids)
 
-    cv2.imshow('Detected Markers', frame)
+    cv2.imshow("Detected Markers", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
